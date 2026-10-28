@@ -199,17 +199,218 @@
 
     .card p:last-child { margin: 0; }
 
-    /* Cards rise in one after another, once */
-    .js .card {
+    /* Cards rise in one after another, once.
+       The animation only fills backwards, so the hover lift still works afterwards. */
+    .js .cards:not(.visible) .card {
       opacity: 0;
       transform: translateY(24px);
     }
     .js .cards.visible .card {
-      animation: heroIn 0.6s ease forwards;
+      animation: cardIn 0.6s ease backwards;
+    }
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(24px); }
     }
     .js .cards.visible .card:nth-child(2) { animation-delay: 0.12s; }
     .js .cards.visible .card:nth-child(3) { animation-delay: 0.24s; }
     .js .cards.visible .card:nth-child(4) { animation-delay: 0.36s; }
+
+    /* ---------- Before / after ---------- */
+    .difference {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 20px 20px 70px;
+      text-align: center;
+    }
+
+    .compare {
+      --pos: 50%;
+      position: relative;
+      margin-top: 32px;
+      aspect-ratio: 11 / 5;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+      container-type: inline-size;
+      user-select: none;
+      text-align: left;
+    }
+
+    .compare:focus-within {
+      outline: 3px solid var(--red);
+      outline-offset: 3px;
+    }
+
+    .layer {
+      position: absolute;
+      inset: 0;
+      padding: 3.5cqw 4cqw;
+      overflow: hidden;
+      font-size: 12px;
+      font-size: 1.7cqw;
+    }
+
+    .layer h4 { margin: 0; }
+    .layer p { margin: 0; }
+
+    /* The messy "before" page */
+    .layer-before {
+      background: #fff7d6;
+      color: #9a9a80;
+      font-family: 'Times New Roman', Times, serif;
+      line-height: 1.2;
+    }
+
+    .layer-before .m-nav {
+      display: flex;
+      gap: 0.5em;
+      font-size: 0.8em;
+      text-decoration: underline;
+    }
+
+    .layer-before .m-nav span:nth-child(3) { font-size: 1.25em; }
+
+    .layer-before h4 {
+      margin-top: 1.6em;
+      font-size: 2.1em;
+      font-weight: 400;
+      color: #d9bd57;
+    }
+
+    .layer-before .m-text {
+      max-width: 85%;
+      margin-top: 0.5em;
+      font-size: 0.8em;
+    }
+
+    .layer-before .m-open {
+      margin-top: 0.9em;
+      font-size: 1.3em;
+      font-weight: 700;
+      color: #d33;
+    }
+
+    .layer-before .m-old-btn {
+      display: inline-block;
+      margin: 1em 0 0 6%;
+      padding: 0.15em 0.5em;
+      font-family: Arial, sans-serif;
+      font-size: 0.75em;
+      color: #888;
+      background: #e6e6e6;
+      border: 1px solid #aaa;
+    }
+
+    /* The tidied-up "after" page */
+    .layer-after {
+      background: #fffdf9;
+      color: #3b2a20;
+      font-family: 'Poppins', Arial, sans-serif;
+      line-height: 1.5;
+      clip-path: inset(0 0 0 var(--pos));
+    }
+
+    .layer-after .m-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 0.9em;
+      border-bottom: 1px solid #eadfd6;
+    }
+
+    .layer-after .m-brand { font-weight: 600; color: #7b4a2d; }
+
+    .layer-after .m-links { display: flex; gap: 1.4em; font-size: 0.85em; }
+
+    .layer-after h4 {
+      margin-top: 1.1em;
+      font-size: 2.6em;
+      font-weight: 600;
+      line-height: 1.1;
+    }
+
+    .layer-after .m-hours {
+      margin: 0.5em 0 1.2em;
+      color: #6b5646;
+    }
+
+    .layer-after .m-btns { display: flex; gap: 0.8em; }
+
+    .layer-after .m-btn {
+      padding: 0.55em 1.3em;
+      border-radius: 0.4em;
+      background: #7b4a2d;
+      color: white;
+      font-size: 0.95em;
+      font-weight: 600;
+    }
+
+    .layer-after .m-btn.alt {
+      background: transparent;
+      color: #7b4a2d;
+      border: 2px solid #7b4a2d;
+    }
+
+    .tag {
+      position: absolute;
+      bottom: 12px;
+      padding: 4px 14px;
+      border-radius: 999px;
+      background: white;
+      color: var(--ink);
+      font-size: 0.8rem;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      pointer-events: none;
+    }
+
+    .tag-before { left: 12px; }
+    .tag-after { right: 12px; background: var(--maroon); color: white; }
+
+    .handle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: var(--pos);
+      width: 3px;
+      margin-left: -1.5px;
+      background: white;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+      pointer-events: none;
+    }
+
+    .handle::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 42px;
+      height: 42px;
+      margin: -21px 0 0 -21px;
+      border: 3px solid white;
+      border-radius: 50%;
+      background: var(--maroon) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 7l-5 5 5 5M15 7l5 5-5 5'/%3E%3C/svg%3E") center / 22px no-repeat;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* A real range input sits invisibly on top: it handles mouse, touch and arrow keys */
+    .compare input[type="range"] {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      opacity: 0;
+      cursor: ew-resize;
+      touch-action: pan-y;
+    }
+
+    .compare-note {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
 
     /* ---------- About ---------- */
     .about {
@@ -315,16 +516,18 @@
       .about { flex-direction: column; text-align: center; gap: 24px; }
       .about h2 { text-align: center; }
       header { padding: 70px 20px 60px; }
+      .compare { aspect-ratio: 5 / 6; }
+      .layer { font-size: 11px; font-size: 3.4cqw; }
     }
 
     /* Respect people who turn animations off */
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .hero-in, .js .card {
+      .hero-in, .js .cards:not(.visible) .card {
         opacity: 1;
         transform: none;
-        animation: none !important;
       }
+      .hero-in, .js .cards .card { animation: none !important; }
       .card, .button { transition: none; }
     }
   </style>
@@ -336,6 +539,7 @@
     <a class="brand" href="#top">Da Rocha Web Services</a>
     <div class="nav-links">
       <a href="#services">Services</a>
+      <a href="#example">Example</a>
       <a href="#about">About</a>
       <a href="#contact" class="nav-cta">Get a quote</a>
     </div>
@@ -386,6 +590,39 @@
       </div>
 
     </div>
+  </section>
+
+  <section class="difference" id="example">
+    <h2>See the difference</h2>
+    <p class="intro">Drag the handle to compare a typical page before and after a Wix tidy-up.</p>
+
+    <div class="compare" id="compare">
+      <div class="layer layer-before" aria-hidden="true">
+        <div class="m-nav"><span>Home</span><span>about us</span><span>MENU</span><span>contact</span></div>
+        <h4>Maple street bakery</h4>
+        <p class="m-text">welcome to my bakery we make bread and cakes and also cookies come visit us</p>
+        <p class="m-open">OPEN MON-FRI 9-5</p>
+        <span class="m-old-btn">click here</span>
+      </div>
+
+      <div class="layer layer-after" aria-hidden="true">
+        <div class="m-top">
+          <span class="m-brand">Maple Street Bakery</span>
+          <span class="m-links"><span>Menu</span><span>About</span><span>Contact</span></span>
+        </div>
+        <h4>Fresh bread, baked every morning.</h4>
+        <p class="m-hours">Open Tuesday to Sunday, 7am to 4pm</p>
+        <div class="m-btns"><span class="m-btn">Call us</span><span class="m-btn alt">See the menu</span></div>
+      </div>
+
+      <span class="tag tag-before" aria-hidden="true">Before</span>
+      <span class="tag tag-after" aria-hidden="true">After</span>
+      <div class="handle" aria-hidden="true"></div>
+      <input type="range" min="0" max="100" value="50"
+             aria-label="Before and after comparison. Move left or right to reveal more of each version.">
+    </div>
+
+    <p class="compare-note">Example only: a made-up bakery page, not a real client. The fix covers spacing, wording, hours and buttons.</p>
   </section>
 
   <section class="about" id="about">
@@ -448,6 +685,21 @@
         });
       }, { threshold: 0.2 });
       observer.observe(cards);
+    })();
+  </script>
+
+  <script>
+    // Before/after slider: the range input drives how much of the "after" page shows.
+    (function () {
+      var compare = document.getElementById('compare');
+      if (!compare) return;
+      var slider = compare.querySelector('input[type="range"]');
+      function update() {
+        compare.style.setProperty('--pos', slider.value + '%');
+        slider.setAttribute('aria-valuetext', (100 - slider.value) + '% of the page shows the tidied-up version');
+      }
+      slider.addEventListener('input', update);
+      update();
     })();
   </script>
 
