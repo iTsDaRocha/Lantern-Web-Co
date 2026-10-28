@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rocha Web Services</title>
+  <title>Da Rocha Web Services | Quick Website Fixes for Small Businesses</title>
+  <meta name="description" content="Quick, friendly website fixes for small businesses. Fixed prices for small edits, Wix tidy-ups, page refreshes, and custom designs.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     html {
@@ -40,15 +42,13 @@
     }
 
     .cards {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 20px;
-      justify-content: center;
       margin-top: 30px;
     }
 
     .card {
-      flex: 1 1 250px;
       border: 1px solid #ddd;
       border-radius: 0;
       padding: 30px;
@@ -108,6 +108,18 @@
       color: #666;
       font-size: 0.9rem;
     }
+
+    @media (max-width: 900px) {
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -115,7 +127,7 @@
   <header>
     <h1>Da Rocha Web Services</h1>
     <p>Quick, friendly website fixes for small businesses.</p>
-<p>By Andrew Da Rocha</p>
+    <p>By Andrew Da Rocha</p>
   </header>
 
   <section class="services">
@@ -153,11 +165,10 @@
 
   <section class="about">
     <h2>About Da Rocha Web Services</h2>
-<p>
-  Hi, I'm Andrew Da Rocha. I help small businesses keep their websites accurate and professional.
-  Updated hours, fresh photos, clearer wording, working buttons. No jargon,
-  no long contracts, just clear pricing and quick turnaround.
-</p>
+    <p>
+      Hi, I'm Andrew Da Rocha. I help small businesses keep their websites accurate and professional.
+      Updated hours, fresh photos, clearer wording, working buttons. No jargon,
+      no long contracts, just clear pricing and quick turnaround.
     </p>
   </section>
 
@@ -167,7 +178,8 @@
     <p>
       <a href="tel:+16473030718" class="button">Call 647-303-0718</a>
       <a href="mailto:rochawebservicesca@gmail.com" class="button">Send an email</a>
-    </p><p>Or email me at rochawebservicesca@gmail.com</p>
+    </p>
+    <p>Or email me at rochawebservicesca@gmail.com</p>
   </section>
 
   <footer>
