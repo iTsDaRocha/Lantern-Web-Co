@@ -173,6 +173,8 @@
 
     .card {
       flex: 1 1 210px;
+      display: flex;
+      flex-direction: column;
       border: 1px solid var(--line);
       padding: 30px 24px;
       background: white;
@@ -185,6 +187,7 @@
     }
 
     .card svg {
+      align-self: center;
       width: 40px;
       height: 40px;
       stroke: var(--maroon);
@@ -203,7 +206,15 @@
       margin: 6px 0 10px;
     }
 
-    .card p:last-child { margin: 0; }
+    .card p:last-of-type { margin: 0 0 20px; }
+
+    /* "Choose" button: pushed to the bottom so all four line up */
+    .card .choose {
+      margin: auto 0 0;
+      align-self: center;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+    }
 
     /* Cards rise in one after another, once.
        The animation only fills backwards, so the hover lift still works afterwards. */
@@ -573,6 +584,7 @@
         <h3>Quick fix</h3>
         <p class="price">$80</p>
         <p>Small edits like business hours, a phone number, or swapping a photo.</p>
+        <a class="button solid choose" href="mailto:rochawebservicesca@gmail.com?subject=Quick%20fix%20(%2480)&amp;body=Hi%20Andrew%2C%20I'd%20like%20a%20quick%20fix.%0A%0AMy%20website%3A%20%0AWhat%20I%20need%20changed%3A%20" aria-label="Choose Quick fix">Choose this</a>
       </div>
 
       <div class="card">
@@ -580,6 +592,7 @@
         <h3>Wix tidy-up</h3>
         <p class="price">$130</p>
         <p>Fix spacing, buttons, and wording so your site looks clean and works properly.</p>
+        <a class="button solid choose" href="mailto:rochawebservicesca@gmail.com?subject=Wix%20tidy-up%20(%24130)&amp;body=Hi%20Andrew%2C%20I'd%20like%20a%20Wix%20tidy-up.%0A%0AMy%20website%3A%20%0AWhat%20bothers%20me%20about%20it%3A%20" aria-label="Choose Wix tidy-up">Choose this</a>
       </div>
 
       <div class="card">
@@ -587,6 +600,7 @@
         <h3>Page refresh</h3>
         <p class="price">$275</p>
         <p>A full page redesigned with better layout, text, and images.</p>
+        <a class="button solid choose" href="mailto:rochawebservicesca@gmail.com?subject=Page%20refresh%20(%24275)&amp;body=Hi%20Andrew%2C%20I'd%20like%20a%20page%20refresh.%0A%0AMy%20website%3A%20%0AWhich%20page%3A%20" aria-label="Choose Page refresh">Choose this</a>
       </div>
 
       <div class="card">
@@ -594,6 +608,7 @@
         <h3>Custom designs</h3>
         <p class="price">$320</p>
         <p>Agreed-upon edits with or without SEO updates.</p>
+        <a class="button solid choose" href="mailto:rochawebservicesca@gmail.com?subject=Custom%20design%20(%24320)&amp;body=Hi%20Andrew%2C%20I'm%20interested%20in%20a%20custom%20design.%0A%0AMy%20website%3A%20%0AWhat%20I%20have%20in%20mind%3A%20" aria-label="Choose Custom design">Choose this</a>
       </div>
 
     </div>
